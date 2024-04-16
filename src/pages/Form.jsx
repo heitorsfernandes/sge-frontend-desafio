@@ -4,15 +4,15 @@ import Etapa1 from '../components/Etapa1';
 import Etapa2 from '../components/Etapa2';
 import Etapa3 from '../components/Etapa3';
 import AppContext from '../context/AppContext';
+import Modal from '../components/Modal';
 
 
 function Form() {
  const [activeStep, setActiveStep] = useState({ Etapa1: true, Etapa2: false, Etapa3: false });
  const [isDisabled, setIsDisabled] = useState(true);
+ const [isModalOpen, setIsModalOpen] = useState(false);
  const { formData } = useContext(AppContext);
 
-
- // Handlers to update the active step
  const handleEtapa1Click = () => setActiveStep({ Etapa1: true, Etapa2: false, Etapa3: false });
  const handleEtapa2Click = () => setActiveStep({ Etapa1: false, Etapa2: true, Etapa3: false });
  const handleEtapa3Click = () => setActiveStep({ Etapa1: false, Etapa2: false, Etapa3: true });
@@ -28,9 +28,12 @@ function Form() {
   }
 
   const hasErrors = () => {
-    // Check if any field has an error or is empty
-    for (const key in formData) {
-      if (!formData[key].value || formData[key].error) {
+    const obligatoryData = Object.fromEntries(
+      Object.entries(formData).filter(([key]) => key !== 'dob')
+    ); // Date of birth não é obrigatório
+  
+    for (const key in obligatoryData) {
+      if (!obligatoryData[key].value || obligatoryData[key].error) {
         return true;
       }
     }
@@ -40,6 +43,20 @@ function Form() {
   useEffect(() => {
     setIsDisabled(hasErrors());
   }, [formData]);
+
+  const handleSubmit = () => {
+    if (!hasErrors()) {
+      setIsModalOpen(true); // Se não houver erros, abra a modal
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    for (const key in formData) {
+      formData[key].value = '';
+    }
+    setIsDisabled(true);
+  };
 
  return (
     <>
@@ -58,8 +75,11 @@ function Form() {
           {activeStep.Etapa3 && <Etapa3 />}
           <div>
             <button onClick={avancarEtapa}>Avançar</button>
-            <button disabled={isDisabled} onClick={() => hasErrors}>Enviar</button>
+            <button disabled={isDisabled} onClick={handleSubmit}>Enviar</button>
           </div>
+          {isModalOpen && (
+            <Modal onClose={handleCloseModal}>Seu formulário foi enviado com sucesso!</Modal>
+          )}
         </section>
       </main>
     </>
