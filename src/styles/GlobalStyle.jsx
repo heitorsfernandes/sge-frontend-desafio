@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: Poppins, sans-serif;
+    max-width: 1300px;
+    margin: 0 auto; /* Center the body horizontally */
+  }
+  
   /* Set default background color */
   body {
     background-color: #151f29; /* A dark gray color as an example */
@@ -28,11 +34,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   .text-success {
     color: #4caf50; /* Green */
-  }
-
-  /* Set font family */
-  body {
-    font-family: Poppins, sans-serif;
   }
 
   /* ... other global styles (spacing, etc.) */
