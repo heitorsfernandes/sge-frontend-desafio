@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import AppContext from '../context/AppContext';
+import  { CatCardsContainer, TagItem, TagButton, TagInfo, TagList, TagListItem } from '../styles/CatCardsStyle';
+
 
 function CatCards() {
   const { catList, tags } = useContext(AppContext);
@@ -19,35 +21,33 @@ function CatCards() {
   };
 
   return (
-    <div>
+    <CatCardsContainer>
       {tags?.map((tag) => {
         const idKey = catList[0]?._id ? '_id' : 'id'; // Define idKey here
         const filteredCats = catList?.filter((cat) => cat.tags?.includes(tag)) || [];
 
         return (
-          <div key={tag} className="tag-item">
-            <button onClick={() => handleToggle(tag)}>{tag}</button>
+          <TagItem key={tag} className="tag-item">
+            <TagButton onClick={() => handleToggle(tag)}>{tag}</TagButton>
             {isOpen[tag] && (
-              <div className="tag-info">
+              <TagInfo className="tag-info">
                 {filteredCats.length > 0 ? (
-                  <ul>
+                  <TagList>
                     {filteredCats.map((cat) => (
-                      <li key={`${cat[idKey]}-${tag}`}>
-                        {/* Replace with the appropriate property to display cat information */}
+                      <TagListItem key={`${cat[idKey]}-${tag}`}>
                         <p>{cat[idKey]}</p>
-                        {/* Add image or other relevant information based on your cat data structure */}
-                      </li>
+                      </TagListItem>
                     ))}
-                  </ul>
+                  </TagList>
                 ) : (
                   <p>No cats found with the tag "{tag}".</p>
                 )}
-              </div>
+              </TagInfo>
             )}
-          </div>
+          </TagItem>
         );
       })}
-    </div>
+    </CatCardsContainer>
   );
 }
 
