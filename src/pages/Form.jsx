@@ -5,6 +5,7 @@ import Etapa2 from '../components/Etapa2';
 import Etapa3 from '../components/Etapa3';
 import AppContext from '../context/AppContext';
 import Modal from '../components/Modal';
+import { FormStyle } from '../styles/FormStyle';
 
 
 function Form() {
@@ -65,21 +66,23 @@ function Form() {
       </header>
       <main>
         <section>
-          <div>
-            <p onClick={handleEtapa1Click}>Etapa 1</p>
-            <p onClick={handleEtapa2Click}>Etapa 2</p>
-            <p onClick={handleEtapa3Click}>Etapa 3</p>
-          </div>
-          {activeStep.Etapa1 && <Etapa1 />}
-          {activeStep.Etapa2 && <Etapa2 />}
-          {activeStep.Etapa3 && <Etapa3 />}
-          <div>
-            <button onClick={avancarEtapa}>Avançar</button>
-            <button disabled={isDisabled} onClick={handleSubmit}>Enviar</button>
-          </div>
-          {isModalOpen && (
-            <Modal onClose={handleCloseModal}>Seu formulário foi enviado com sucesso!</Modal>
-          )}
+          <FormStyle>
+            <div>
+              <p class='etapa-button' onClick={handleEtapa1Click}>Etapa 1</p>
+              <p class='etapa-button' onClick={handleEtapa2Click}>Etapa 2</p>
+              <p class='etapa-button' onClick={handleEtapa3Click}>Etapa 3</p>
+            </div>
+            {activeStep.Etapa1 && <Etapa1/>}
+            {activeStep.Etapa2 && <Etapa2/>}
+            {activeStep.Etapa3 && <Etapa3/>}
+            <div>
+              <button class='avancar' onClick={avancarEtapa}>Avançar</button>
+              <button class='enviar' disabled={isDisabled} onClick={handleSubmit}>Enviar</button>
+            </div>
+            {isModalOpen && (
+              <Modal onClose={handleCloseModal}>Seu formulário foi enviado com sucesso!</Modal>
+            )}
+         </FormStyle>
         </section>
       </main>
     </>
