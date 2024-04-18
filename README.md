@@ -26,14 +26,15 @@ git clone https://github.com/seu-usuario/react-context-api-project.git
   ```bash
   npm install
   npm start```
+  ```
   Acesse em [https:/localhost:3000](https:/localhost:3000).
 
 - #### Docker
   ```bash
-   % docker logs seu-projeto
+  % docker logs seu-projeto
   ```
   ```bash
-    % docker run -d -p 8080:80 seu-projeto
+  % docker run -d -p 8080:80 seu-projeto
   ```
   Acesse em [https:/localhost:8080](https:/localhost:8080).
 
