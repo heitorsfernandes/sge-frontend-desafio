@@ -94,12 +94,12 @@ function Form() {
                   Etapa 2
               </p>
               <p className={'etapa-button ' + (classError3() ? 'error' : '')}
-                onClick={handleEtapa2Click}
+                onClick={handleEtapa3Click}
               >
                   Etapa 3
               </p>            
             </div>
-            {activeStep.Etapa1 && <Etapa1 />}
+            {activeStep.Etapa1 && <Etapa1/>}
             {activeStep.Etapa2 && <Etapa2/>}
             {activeStep.Etapa3 && <Etapa3/>}
             <div>
