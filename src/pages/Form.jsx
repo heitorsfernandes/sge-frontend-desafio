@@ -41,8 +41,23 @@ function Form() {
     return false;
   };
 
+  const classError = () => {
+    if (formData.email.error || formData.password.error || formData.confirmPassword.error) return true;
+  }
+
+  const classError2 = () => {
+    if (formData.name.error || formData.surname.error || formData.dob.error) return true;
+  }
+
+  const classError3 = () => {
+    if (formData.streetNumber.error || formData.city.error || formData.state.error || formData.postalCode.error) return true;
+  }
+
   useEffect(() => {
     setIsDisabled(hasErrors());
+    classError();
+    classError2()
+    classError3()
   }, [formData]);
 
   const handleSubmit = () => {
@@ -68,11 +83,23 @@ function Form() {
         <section>
           <FormStyle>
             <div>
-              <p class='etapa-button' onClick={handleEtapa1Click}>Etapa 1</p>
-              <p class='etapa-button' onClick={handleEtapa2Click}>Etapa 2</p>
-              <p class='etapa-button' onClick={handleEtapa3Click}>Etapa 3</p>
+              <p className={'etapa-button ' + (classError() ? 'error' : '')} 
+                onClick={handleEtapa1Click}
+              >
+                  Etapa 1
+              </p>
+              <p className={'etapa-button ' + (classError2() ? 'error' : '')}
+                onClick={handleEtapa2Click}
+              >
+                  Etapa 2
+              </p>
+              <p className={'etapa-button ' + (classError3() ? 'error' : '')}
+                onClick={handleEtapa2Click}
+              >
+                  Etapa 3
+              </p>            
             </div>
-            {activeStep.Etapa1 && <Etapa1/>}
+            {activeStep.Etapa1 && <Etapa1 />}
             {activeStep.Etapa2 && <Etapa2/>}
             {activeStep.Etapa3 && <Etapa3/>}
             <div>

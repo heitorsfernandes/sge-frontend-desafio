@@ -16,13 +16,13 @@ export const FormStyle = styled.div`
     background-color: #273440;
     color: #eff168;
     transition: background-color 0.3s, color 0.3s; 
-}
+  }
 
   .etapa-button:hover {
     background-color: #1c2938;
   }
 
-    button {
+  button {
     padding: 10px;
     border-radius: 1px; 
     cursor: pointer;
@@ -49,7 +49,11 @@ export const FormStyle = styled.div`
   button.enviar:disabled {
     background-color: rgba(153, 153, 153, 0.2); /* Set background color for disabled Enviar button with 50% opacity */
     color: #555; /* Set text color for disabled Enviar button */
-}
+  }
+
+  .error.etapa-button {
+    border: 1px solid #f44336; /* Add border style for error etapa-button */
+  }
 `;
 
 
