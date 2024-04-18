@@ -3,15 +3,17 @@ import React from 'react';
 import Provider from './context/Provider';
 import CatList from './pages/CatList';
 import Form from './pages/Form';
+import { GlobalStyle } from './styles/GlobalStyle.jsx';
 
 function App() {
   return (
   <Provider>
-      <Routes>
-        <Route path="/" element={<Navigate to="/catList" replace />} />
-        <Route path="/catList" element={< CatList />}/>
-        <Route path="/form" element={< Form />}/>
-      </Routes>
+      <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<Navigate to="/catList" replace />} />
+          <Route path="/catList" element={<CatList />}/>
+          <Route path="/form" element={<Form />}/>
+        </Routes>
   </Provider>
   );
 }
