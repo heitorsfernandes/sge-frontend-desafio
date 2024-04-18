@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import { EtapaFormStyle } from '../styles/EtapaFormStyle';
 
 
 function Etapa1() {
@@ -50,7 +51,8 @@ function Etapa1() {
     <>
       <main>
         <section>
-        <form>
+        <EtapaFormStyle>
+          <form>
             <label htmlFor="email" className="visually-hidden"/>
             <input 
                 type="email" 
@@ -92,7 +94,8 @@ function Etapa1() {
             {formData.confirmPassword.error && (
               <span className="error-message">{formData.confirmPassword.error}</span>
             )}
-        </form>
+          </form>
+        </EtapaFormStyle>
         </section>
       </main>
     </>
